@@ -3,6 +3,15 @@ name: Checks
 on: push
 
 jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the code
+        uses: actions/checkout@v7
+
+      - name: Build the production image
+        run: docker build --target production -t notes-app .
+
   backend:
     runs-on: ubuntu-latest
     defaults:
@@ -25,12 +34,3 @@ jobs:
 
       - name: Check formatting
         run: npm run format:check
-
-        docker:
-        runs-on: ubuntu-latest
-        steps:
-          - name: Check out the code
-            uses: actions/checkout@v7
-
-          - name: Build the production image
-            run: docker build --target production -t notes-app .
