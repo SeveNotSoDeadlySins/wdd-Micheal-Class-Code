@@ -54,7 +54,9 @@ app.post("/api/notes", upload.single("file"), (req, res) => {
 });
 
 app.delete("/api/notes/:id", (req, res) => {
-  const noteIndex = notes.findIndex((note) => note.id === Number(req.params.id));
+  const noteIndex = notes.findIndex(
+    (note) => note.id === Number(req.params.id),
+  );
 
   if (noteIndex !== -1) {
     notes.splice(noteIndex, 1);
